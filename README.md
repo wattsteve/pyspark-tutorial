@@ -26,6 +26,7 @@ Install Conda Cluster by running the following commands on your client machine.
 ### Configuring your Cluster in Conda Cluster
  
 * From the server you designated to be the Anaconda Cluster Master, copy its private SSH Key to your client to  ~/.conda/clusters.d/rhs-spark.key and set the permissions on it to chmod 600.
+
 * From the client, create the Cluster YAML file for your intended Spark Cluster that conda cluster will be managing:
 
 The head IP listed below is the Anaconda Cluster Master we designated. The private_key value is its private key that we copied from the Master onto the client. The compute IP is the other node in the GlusterFS cluster. Add it but ignore the simple_aws provider. Lastly, the name of the file and the name of the cluster (rhs-spark) must match.
@@ -57,7 +58,7 @@ You have now completed setting up the Cluster. It is ready to ready PySpark Jobs
 
 ### Running PySpark Jobs on GlusterFS
 
-1. Copy some data (“Grimm’s Fairy Tales”) into the GlusterFS Volume so that we can analyze with a PySpark Job:
+* Copy some data (“Grimm’s Fairy Tales”) into the GlusterFS Volume so that we can analyze with a PySpark Job:
 
 ```
 # mkdir -p /mnt/glusterfs/grimm
@@ -65,8 +66,8 @@ You have now completed setting up the Cluster. It is ready to ready PySpark Jobs
 # wget https://www.gutenberg.org/cache/epub/2591/pg2591.txt --no-check-certificate
 ```
 
-2. Write a PySpark Job and copy it up to the Anaconda Master in the cluster. I have included a spark-wordcount.py in this repo that you can use. Note that it expects files to exist within the /mnt/glusterfs/grimm directory in the GlusterFS Volume.
+* Write a PySpark Job and copy it up to the Anaconda Master in the cluster. I have included a spark-wordcount.py in this repo that you can use. Note that it expects files to exist within the /mnt/glusterfs/grimm directory in the GlusterFS Volume.
 
-3. From the Anaconda Master, run the PySpark Job
+* From the Anaconda Master, run the PySpark Job
 
 `# python spark-wordcount.py`
