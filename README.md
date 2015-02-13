@@ -30,7 +30,8 @@ Install Conda Cluster by running the following commands on your client machine.
 - The name of the file and the name of the cluster (rhs-spark) must match
 - Ignore the simple_aws provider
 
-vi ~/.conda/clusters.d/rhs-spark.yaml 
+```
+# vi ~/.conda/clusters.d/rhs-spark.yaml 
 rhs-spark:
     private_key         : ~/.conda/clusters.d/rhs-spark.key
     user                : root
@@ -38,6 +39,7 @@ rhs-spark:
          head      : ['192.168.58.219']
          compute   : ['192.168.58.218']
     provider            : simple_aws
+```
 
 3. From the client, verify conda cluster can find the newly defined cluster:
 
@@ -51,11 +53,11 @@ rhs-spark:
 
 `# conda cluster manage rhs-spark bootstrap --spark --loglevel DEBUG` 
 
-You have now completed setting up the Cluster. It is ready to ready Spark Jobs.
+You have now completed setting up the Cluster. It is ready to ready PySpark Jobs.
 
 ### Running PySpark Jobs on GlusterFS
 
-1. Copy some data (“Grimm’s Fairy Tales”) in the GlusterFS Volume so that we can analyze with a PySpark Job:
+1. Copy some data (“Grimm’s Fairy Tales”) into the GlusterFS Volume so that we can analyze with a PySpark Job:
 
 `# mkdir -p /mnt/glusterfs/grimm`
 
@@ -67,4 +69,4 @@ You have now completed setting up the Cluster. It is ready to ready Spark Jobs.
 
 3. From the Anaconda Master, run the PySpark Job
 
-`# python /opt/spark-wordcount.py`
+`# python spark-wordcount.py`
