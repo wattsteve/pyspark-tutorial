@@ -25,7 +25,7 @@ Install Conda Cluster by running the following commands on your client machine.
 1. From the server you designated to be the Anaconda Cluster Master, copy its private SSH Key to your client to  ~/.conda/clusters.d/rhs-spark.key and set the permissions on it to chmod 600.
 2. From the client, create the Cluster YAML file for your intended Spark Cluster that conda cluster will be managing:
 
-- The head IP below is the Anaconda Cluster Master we designated and private_key value is its private that we copied onto the client
+- The head IP below is the Anaconda Cluster Master we designated and private_key value is its private key that we copied onto the client
 - The compute IP is the other node in the GlusterFS cluster
 - The name of the file and the name of the cluster (rhs-spark) must match
 - Ignore the simple_aws provider
@@ -40,24 +40,31 @@ rhs-spark:
     provider            : simple_aws
 
 3. From the client, verify conda cluster can find the newly defined cluster:
+
 `# conda cluster list; conda cluster manage rhs-spark status`
 
 4. From the client, bootstrap the cluster (This install conda cluster on GlusterFS servers)
+
 `# conda cluster manage rhs-spark bootstrap --conda --loglevel DEBUG`
 
 5. From the client, deploy the PySpark runtime on the GlusterFS Servers.
+
 `# conda cluster manage rhs-spark bootstrap --spark --loglevel DEBUG` 
 
 You have now completed setting up the Cluster. It is ready to ready Spark Jobs.
 
 ### Running PySpark Jobs on GlusterFS
 
-1. Copy some data (“Grimm’s Fairy Tales”) in the GlusterFS Volume so that we can analyze with a PySpark Job
+1. Copy some data (“Grimm’s Fairy Tales”) in the GlusterFS Volume so that we can analyze with a PySpark Job:
+
 `# mkdir -p /mnt/glusterfs/grimm`
+
 `# cd /mnt/glusterfs/grimm`
+
 `# wget https://www.gutenberg.org/cache/epub/2591/pg2591.txt --no-check-certificate`
 
 2. Write a PySpark Job and copy it up to the Anaconda Master in the cluster. I have included a spark-wordcount.py in this repo that you can use. Note that it expects files to exist within the /mnt/glusterfs/grimm directory in the GlusterFS Volume.
 
 3. From the Anaconda Master, run the PySpark Job
+
 `# python /opt/spark-wordcount.py`
