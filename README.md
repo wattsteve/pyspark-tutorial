@@ -2,23 +2,23 @@
 
 This tutorial describes how to  deploy Anaconda Cluster and PySpark on top of Red Hat Storage GlusterFS.
 
-## Pre-Requisites
+### Pre-Requisites
 
 You'll first need a GlusterFS cluster. You can get the commercial version from Red Hat or you can use [a vagrant script from Jay Vyas to spin up a simple 2 Node GlusterFS cluster and volume](https://forge.gluster.org/vagrant/fedora19-gluster/blobs/master/vagrant-gluster-examples/README). 
 
 Designate a random node in your GlusterFS Cluster to be your Anaconda Cluster Master. From the master, setup passwordless SSH access into the other GlusterFS nodes in the cluster and into itself.
 
-## Install Anaconda on your client (laptop)
+### Install Anaconda on your client (laptop)
 
 Install Anaconda 2.7 on a laptop (or client machine) that can reach the cluster. You can [download this here and its free](https://store.continuum.io/cshop/anaconda/).
 
-## Install Anaconda Cluster on your client (laptop)
+### Install Anaconda Cluster on your client (laptop)
 
 Install Conda Cluster by running the following commands on your client machine.
-TOKEN={ You will need to get this from Continuum Analytics }
-conda install -c https://conda.binstar.org/t/$TOKEN/conda-cluster conda-cluster
+`# TOKEN={ You will need to get this from Continuum Analytics }`
+`# conda install -c https://conda.binstar.org/t/$TOKEN/conda-cluster conda-cluster`
 
-## Configuring your Cluster in Conda Cluster
+### Configuring your Cluster in Conda Cluster
  
 1. From the server you designated to be the Anaconda Cluster Master, copy its private SSH Key to your client to  ~/.conda/clusters.d/rhs-spark.key and set the permissions on it to chmod 600.
 2. From the client, create the Cluster YAML file for your intended Spark Cluster that conda cluster will be managing:
@@ -48,7 +48,7 @@ conda cluster manage rhs-spark bootstrap --spark --loglevel DEBUG
 
 You have now completed setting up the Cluster. It is ready to ready Spark Jobs.
 
-## Running PySpark Jobs on GlusterFS
+### Running PySpark Jobs on GlusterFS
 
 1. Copy some data (“Grimm’s Fairy Tales”) in the GlusterFS Volume so that we can analyze with a PySpark Job
 mkdir -p /mnt/glusterfs/grimm
