@@ -16,7 +16,7 @@ Install Anaconda 2.7 on a laptop (or client machine) that can reach the cluster.
 
 ### Install Anaconda Cluster on your client (laptop)
 
-Install Conda Cluster by running the following commands on your client machine.
+A license token can be obtained for Anaconda Cluster can contacting Continuum Analytics [at this link](http://continuum.io/anaconda-cluster). Once you have the token, Anaconda Cluster can be installed by running the following commands on your client machine.
 
 ```
 # TOKEN={ You will need to get this from Continuum Analytics }
