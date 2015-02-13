@@ -15,7 +15,9 @@ Install Anaconda 2.7 on a laptop (or client machine) that can reach the cluster.
 ### Install Anaconda Cluster on your client (laptop)
 
 Install Conda Cluster by running the following commands on your client machine.
+
 `# TOKEN={ You will need to get this from Continuum Analytics }`
+
 `# conda install -c https://conda.binstar.org/t/$TOKEN/conda-cluster conda-cluster`
 
 ### Configuring your Cluster in Conda Cluster
@@ -38,26 +40,24 @@ rhs-spark:
     provider            : simple_aws
 
 3. From the client, verify conda cluster can find the newly defined cluster:
-conda cluster list; conda cluster manage rhs-spark status
+`# conda cluster list; conda cluster manage rhs-spark status`
 
 4. From the client, bootstrap the cluster (This install conda cluster on GlusterFS servers)
-conda cluster manage rhs-spark bootstrap --conda --loglevel DEBUG 
+`# conda cluster manage rhs-spark bootstrap --conda --loglevel DEBUG`
 
 5. From the client, deploy the PySpark runtime on the GlusterFS Servers.
-conda cluster manage rhs-spark bootstrap --spark --loglevel DEBUG 
+`# conda cluster manage rhs-spark bootstrap --spark --loglevel DEBUG` 
 
 You have now completed setting up the Cluster. It is ready to ready Spark Jobs.
 
 ### Running PySpark Jobs on GlusterFS
 
 1. Copy some data (“Grimm’s Fairy Tales”) in the GlusterFS Volume so that we can analyze with a PySpark Job
-mkdir -p /mnt/glusterfs/grimm
-cd /mnt/glusterfs/grimm
-wget https://www.gutenberg.org/cache/epub/2591/pg2591.txt --no-check-certificate
+`# mkdir -p /mnt/glusterfs/grimm`
+`# cd /mnt/glusterfs/grimm`
+`# wget https://www.gutenberg.org/cache/epub/2591/pg2591.txt --no-check-certificate`
 
 2. Write a PySpark Job and copy it up to the Anaconda Master in the cluster. I have included a spark-wordcount.py in this repo that you can use. Note that it expects files to exist within the /mnt/glusterfs/grimm directory in the GlusterFS Volume.
 
-
-
-
-
+3. From the Anaconda Master, run the PySpark Job
+`# python /opt/spark-wordcount.py`
