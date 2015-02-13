@@ -2,6 +2,8 @@
 
 This tutorial describes how to  deploy Anaconda Cluster and PySpark on top of Red Hat Storage GlusterFS.
 
+![alt tag](https://raw.githubusercontent.com/wattsteve/pyspark-tutorial/master/solution.png)
+
 ### Pre-Requisites
 
 You'll first need a GlusterFS cluster. You can get the commercial version from Red Hat or you can use [a vagrant script from Jay Vyas to spin up a simple 2 Node GlusterFS cluster and volume](https://forge.gluster.org/vagrant/fedora19-gluster/blobs/master/vagrant-gluster-examples/README). 
@@ -59,11 +61,11 @@ You have now completed setting up the Cluster. It is ready to ready PySpark Jobs
 
 1. Copy some data (“Grimm’s Fairy Tales”) into the GlusterFS Volume so that we can analyze with a PySpark Job:
 
-`# mkdir -p /mnt/glusterfs/grimm`
-
-`# cd /mnt/glusterfs/grimm`
-
-`# wget https://www.gutenberg.org/cache/epub/2591/pg2591.txt --no-check-certificate`
+```
+# mkdir -p /mnt/glusterfs/grimm
+# cd /mnt/glusterfs/grimm
+# wget https://www.gutenberg.org/cache/epub/2591/pg2591.txt --no-check-certificate
+```
 
 2. Write a PySpark Job and copy it up to the Anaconda Master in the cluster. I have included a spark-wordcount.py in this repo that you can use. Note that it expects files to exist within the /mnt/glusterfs/grimm directory in the GlusterFS Volume.
 
