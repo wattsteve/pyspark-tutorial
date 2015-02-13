@@ -66,7 +66,7 @@ You have now completed setting up the Cluster. It is ready to ready PySpark Jobs
 # wget https://www.gutenberg.org/cache/epub/2591/pg2591.txt --no-check-certificate
 ```
 
-* Write a PySpark Job and copy it up to the Anaconda Master in the cluster. I have included a spark-wordcount.py in this repo that you can use. Note that it expects files to exist within the /mnt/glusterfs/grimm directory in the GlusterFS Volume.
+* Write a PySpark Job and copy it up to the Anaconda Master in the cluster. I have included a spark-wordcount.py in this repo that you can use. Note that it expects files to exist within the /mnt/glusterfs/grimm directory in the GlusterFS Volume. You will need to edit the file to change the setMaster value to your Anaconda Master hostname.
 
 * From the Anaconda Master, run the PySpark Job
 
