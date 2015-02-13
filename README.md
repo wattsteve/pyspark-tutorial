@@ -18,9 +18,10 @@ Install Anaconda 2.7 on a laptop (or client machine) that can reach the cluster.
 
 Install Conda Cluster by running the following commands on your client machine.
 
-`# TOKEN={ You will need to get this from Continuum Analytics }`
-
-`# conda install -c https://conda.binstar.org/t/$TOKEN/conda-cluster conda-cluster`
+```
+# TOKEN={ You will need to get this from Continuum Analytics }
+# conda install -c https://conda.binstar.org/t/$TOKEN/conda-cluster conda-cluster
+```
 
 ### Configuring your Cluster in Conda Cluster
  
@@ -42,11 +43,9 @@ rhs-spark:
          compute   : ['192.168.58.218']
     provider            : simple_aws
 ```
-
 3. From the client, verify conda cluster can find the newly defined cluster:
 
 `# conda cluster list; conda cluster manage rhs-spark status`
-
 4. From the client, bootstrap the cluster (This install conda cluster on GlusterFS servers)
 
 `# conda cluster manage rhs-spark bootstrap --conda --loglevel DEBUG`
