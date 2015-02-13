@@ -25,8 +25,8 @@ Install Conda Cluster by running the following commands on your client machine.
 
 ### Configuring your Cluster in Conda Cluster
  
-1. From the server you designated to be the Anaconda Cluster Master, copy its private SSH Key to your client to  ~/.conda/clusters.d/rhs-spark.key and set the permissions on it to chmod 600.
-2. From the client, create the Cluster YAML file for your intended Spark Cluster that conda cluster will be managing:
+* From the server you designated to be the Anaconda Cluster Master, copy its private SSH Key to your client to  ~/.conda/clusters.d/rhs-spark.key and set the permissions on it to chmod 600.
+* From the client, create the Cluster YAML file for your intended Spark Cluster that conda cluster will be managing:
 
 - The head IP below is the Anaconda Cluster Master we designated and private_key value is its private key that we copied onto the client
 - The compute IP is the other node in the GlusterFS cluster
@@ -43,14 +43,16 @@ rhs-spark:
          compute   : ['192.168.58.218']
     provider            : simple_aws
 ```
-3. From the client, verify conda cluster can find the newly defined cluster:
+
+* From the client, verify conda cluster can find the newly defined cluster:
 
 `# conda cluster list; conda cluster manage rhs-spark status`
-4. From the client, bootstrap the cluster (This install conda cluster on GlusterFS servers)
+
+* From the client, bootstrap the cluster (This install conda cluster on GlusterFS servers)
 
 `# conda cluster manage rhs-spark bootstrap --conda --loglevel DEBUG`
 
-5. From the client, deploy the PySpark runtime on the GlusterFS Servers.
+* From the client, deploy the PySpark runtime on the GlusterFS Servers.
 
 `# conda cluster manage rhs-spark bootstrap --spark --loglevel DEBUG` 
 
